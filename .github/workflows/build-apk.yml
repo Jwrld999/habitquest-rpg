@@ -39,8 +39,7 @@ jobs:
       - name: Build Android APK
         working-directory: ./android
         env:
-          _JAVA_OPTIONS: "-Xmx4096m"
-          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4096m"
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m"
         run: ./gradlew assembleDebug --no-daemon
 
 
