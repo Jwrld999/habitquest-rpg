@@ -33,10 +33,13 @@ jobs:
 
       - name: Generate Android Project
         run: npx expo prebuild --platform android --no-install
-
       - name: Build Android APK
         working-directory: ./android
+        env:
+          _JAVA_OPTIONS: "-Xmx4096m"
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4096m"
         run: ./gradlew assembleDebug --no-daemon
+
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
